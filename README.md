@@ -10,20 +10,17 @@ Caddy2+Hugo+AliDNS的Dockerfile， 含git webhook更新与阿里云自动申请S
 
 南大 Git（特殊时期可能无法校外访问，懂得都懂）：
 ```
-git https://git.nju.edu.cn/ladderoperator/docker-caddy2-hugo-alidns.git
+git clone https://git.nju.edu.cn/ladderoperator/docker-caddy2-hugo-alidns.git
 ```
 GitHub：
 ```
-git https://github.com/LadderOperator/docker-caddy2-hugo-alidns.git
+git hclone ttps://github.com/LadderOperator/docker-caddy2-hugo-alidns.git
 ```
-之后
+配置好`config.json`文件之后，
 ```
-cd docker-caddy2-hugo-alidns
 docker-compose up -d
 ```
-便可以简单克隆一个博客。
-
-对于你自己的博客来说，只需要相应替换博客的仓库链接就可以。
+便可以简单搭建起你的 Hugo 博客。
 
 ## 配置
 
