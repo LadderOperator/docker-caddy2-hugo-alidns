@@ -9,4 +9,4 @@ services:
       - "443:443"
     volumes:
       - $PWD/config.json:/etc/caddy/config.json
-      - ../data:/data
+      - $PWD/data:/data
