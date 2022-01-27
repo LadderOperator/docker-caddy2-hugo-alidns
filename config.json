@@ -1,0 +1,97 @@
+{
+    "apps": {
+        "tls": {
+            "certificates": {
+                "automate": [
+                    "example.com"
+                ]
+            },
+            "automation": {
+                "policies": [
+                    {
+                        "issuers": [
+                            {
+                                "module": "acme",
+                                "challenges": {
+                                    "dns": {
+                                        "provider": {
+                                            "name": "alidns",
+                                            "access_key_id": "access_key_id",
+                                            "access_key_secret": "access_key_secret"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "http": {
+            "servers": {
+                "caddy-hugo": {
+                    "listen": [
+                        ":443"
+                    ],
+                    "automatic_https": {
+                        "disable": false
+                    },
+                    "routes": [
+                        {
+                            "handle": [
+                                {
+                                    "handler": "file_server",
+                                    "root": "/public"
+                                }
+                            ],
+                            "match": [
+                              {
+                                "not": [
+                                  {
+                                    "path": [
+                                        "/webhook"
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                        },
+                        {
+                            "handle": [
+                                {
+                                    "handler": "subroute",
+                                    "routes": [
+                                        {
+                                            "handle": [
+                                                {
+                                                    "branch": "master",
+                                                    "command": [
+                                                        "hugo",
+                                                        "--destination=/public"
+                                                    ],
+                                                    "handler": "webhook",
+                                                    "path": "/blog",
+                                                    "repo": "https://gitee.com/example/example-blog.git",
+                                                    "secret": "example",
+                                                    "submodule": true,
+                                                    "type": "gitee"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "match": [
+                                {
+                                    "path": [
+                                        "/webhook"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

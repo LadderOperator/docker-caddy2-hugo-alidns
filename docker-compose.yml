@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  my-caddy-hugo:
+    image: ladderoperator/caddy2-hugo-aliyun
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - $PWD/config.json:/etc/caddy/config.json
+      - ../data:/data
