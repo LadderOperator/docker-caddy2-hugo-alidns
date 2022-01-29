@@ -14,7 +14,7 @@ git clone https://git.nju.edu.cn/ladderoperator/docker-caddy2-hugo-alidns.git
 ```
 GitHub：
 ```
-git hclone ttps://github.com/LadderOperator/docker-caddy2-hugo-alidns.git
+git clone https://github.com/LadderOperator/docker-caddy2-hugo-alidns.git
 ```
 配置好`config.json`文件之后，
 ```
